@@ -8,7 +8,7 @@ Fiquei resposavél pela extração dos dados do sistema interno via SQL, tratame
 
 O ganho principal foi reduzir o ciclo de atualização dos KPIs de faturamento de 30 dias para 7 dias, um ganho de 75% no tempo de disponibilidade da informação, com eliminação dos erros de consolidação manual.
 
-O que faria diferente hoje: investiria mais tempo na etapa de governança das fontes as planilhas desestruturadas foram o maior gargalo e seguiram sendo um risco. Definiria um schema mínimo obrigatório de entrada e automatizaria a validação antes da ingestão, provavelmente com Python + Great Expectations ou uma validação simples em SQL.
+O que faria diferente hoje investiria mais tempo na etapa de governança das fontes as planilhas desestruturadas foram o maior gargalo e seguiram sendo um risco. Definiria um schema mínimo obrigatório de entrada e automatizaria a validação antes da ingestão, provavelmente com Python + Great Expectations ou uma validação simples em SQL.
 
 ## Questão 1.2 — Stack declarada
 
