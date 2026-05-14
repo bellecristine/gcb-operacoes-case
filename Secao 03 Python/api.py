@@ -11,7 +11,6 @@ logger = logging.getLogger(__name__)
 
 BASE_URL = "https://api.exemplo.com/v1/operacoes"
 OUTPUT_FILE = Path("operacoes.parquet")
-LOG_FILE = Path("log_execucao.json")
 
 MAX_TENTATIVAS = 5
 MAX_FALHAS_SEGUIDAS = 3
@@ -160,19 +159,6 @@ def executar():
     total_paginas = pagina - 1
     total_erros = sum(contadores_erro.values())
 
-    log = {
-        "timestamp": inicio.isoformat(),
-        "total_paginas": total_paginas,
-        "total_registros_novos": len(registros_novos),
-        "tempo_total_segundos": round(duracao, 2),
-        "erros_por_tipo": contadores_erro,
-        "total_erros": total_erros,
-        "taxa_sucesso_pct": round(
-            100 * (total_paginas - total_erros) / max(total_paginas, 1), 1
-        )
-    }
-
-    LOG_FILE.write_text(json.dumps(log, indent=2, ensure_ascii=False))
     logger.info(f"Execução finalizada: {log}")
 
 
