@@ -1,4 +1,4 @@
-erramenta utilizada: Claude (Anthropic).
+Ferramenta utilizada Claude (Anthropic).
 
 Utilizei o Claude principalmente para revisar a estrutura das respostas e ajudar na organização dos tópicos desta seção. As decisões de lógica, critérios de classificação e premissas operacionais foram definidas por mim durante a elaboração do case.
 
@@ -105,7 +105,8 @@ Isso reduz respostas inventadas e melhora rastreabilidade.
 Temperaturas próximas de zero deixam o modelo mais conservador e reduzem variações desnecessárias em contexto operacional.
 
 ### Técnica considerada mais importante
-A ancoragem na fonte é a técnica mais importante porque reduz estruturalmente a possibilidade de respostas sem respaldo documental.
+A ancoragem na fonte é a técnica mais impgit add .
+orque reduz estruturalmente a possibilidade de respostas sem respaldo documental.
 
 ### Como acompanharia ao longo do tempo
 Faria amostragem periódica comparando respostas geradas com os documentos recuperados para medir percentual de respostas sem respaldo na fonte.
