@@ -15,14 +15,14 @@ WHERE status = 'LIQUIDADO'
   AND DATE_TRUNC('month', data_aporte) = DATE_TRUNC('month', CURRENT_DATE)
 GROUP BY meio_pagamento
 ORDER BY volume_total DESC;
-
-## Lógica
+``` 
+### Lógica
 
 A window function SUM(SUM(valor)) OVER () calcula o total geral do mês sem necessidade de uma subquery separada, permitindo obter o percentual de participação de cada meio de pagamento de forma mais simples. O DATE_TRUNC garante que apenas registros do mês corrente sejam considerados.
 
 ## Questão 2.2 — Aportistas sem investimento
 
-'''sql 
+```sql
 WITH aportes_recentes AS (
     SELECT
         a.id_aporte,
@@ -90,13 +90,13 @@ FROM sem_investimento si
 JOIN clientes c
     ON c.id_cliente = si.id_cliente
 ORDER BY si.data_aporte DESC;
-
-##Lógica
+```
+### Lógica
 Utilizei CTEs para separar a leitura dos aportes recentes da regra principal de negócio. O NOT EXISTS foi escolhido por ser uma abordagem boa para identificar ausência de registros relacionados sem risco de duplicidade.
 
 ## Questão 2.3 — Cohort de retenção
 
-'''sql
+```sql
 WITH primeiro_aporte AS (
     SELECT
         id_cliente,
@@ -144,8 +144,8 @@ SELECT
 FROM base
 GROUP BY cohort
 ORDER BY cohort;
-
-##Lógica
+```
+### Lógica
 
 A consulta foi dividida em etapas usando CTEs para facilitar leitura e manutenção. A cláusula FILTER (WHERE ...) deixou os cálculos percentuais mais claros e legíveis do que múltiplos CASE WHEN dentro das agregações.
 
@@ -167,7 +167,7 @@ Como critério inicial, compararia o volume atual com o comportamento médio das
 Escalaria para IT caso a queda aparecesse simultaneamente em múltiplos segmentos e meios de pagamento, indicando possível falha sistêmica.
 
 
-##Questão 2.5 — Otimização de query
+### Questão 2.5 — Otimização de query
 
 Principais problemas identificados
 Uso de subqueries correlacionadas, gerando múltiplas leituras da tabela aportes.
@@ -175,8 +175,7 @@ Repetição de scans na mesma tabela para calcular métricas diferentes.
 Possível custo elevado de ordenação devido a valores nulos em volume_total.
 Versão otimizada
 
-'''sql
-
+```sql
 SELECT
     c.nome,
     c.cpf,
@@ -201,3 +200,4 @@ LEFT JOIN (
     ON a.id_cliente = c.id_cliente
 WHERE c.status_kyc = 'APROVADO'
 ORDER BY volume_total DESC NULLS LAST;
+```
