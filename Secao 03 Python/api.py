@@ -14,7 +14,7 @@ OUTPUT_FILE = Path("operacoes.parquet")
 LOG_FILE = Path("log_execucao.json")
 
 MAX_TENTATIVAS = 5
-MAX_FALHAS_SEGUIDAS = 5
+MAX_FALHAS_SEGUIDAS = 3
 
 
 def buscar_pagina(
